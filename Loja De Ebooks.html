@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOUD EBOOKS | A tua plataforma digital em Moçambique</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Inter & Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        loud: {
+                            black: '#05070A',
+                            dark: '#0C0F17',
+                            card: '#131824',
+                            border: '#202A3C',
+                            primary: '#8B5CF6',
+                            secondary: '#06B6D4',
+                            accent: '#10B981',
+                            yellow: '#F59E0B',
+                            neonPink: '#FF007F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #05070A;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes textShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 15px rgba(139, 92, 246, 0.7), 0 0 25px rgba(6, 182, 212, 0.5); }
+            50% { text-shadow: 0 0 25px rgba(139, 92, 246, 1), 0 0 35px rgba(16, 185, 129, 0.8); }
+        }
+        @keyframes shineSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(90deg, #d8b4fe, #38bdf8, #34d399, #fbbf24, #d8b4fe);
+            background-size: 250% 250%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 3.5s ease infinite;
+        }
+
+        .neon-glow-title {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .hover-color-letter {
+            display: inline-block;
+            transition: transform 0.15s ease, color 0.15s ease;
+            cursor: pointer;
+        }
+        .hover-color-letter:hover {
+            color: #00f0ff !important;
+            transform: translateY(-3px) scale(1.15);
+        }
+
+        .loud-card {
+            background: rgba(19, 24, 36, 0.95);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .loud-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(6, 182, 212, 0.6);
+            box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.3);
+        }
+
+        .shine-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: translateX(-100%);
+            animation: shineSweep 3s infinite;
+        }
+
+        .cyberpunk-hero-box {
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.12), rgba(6, 182, 212, 0.08), rgba(5, 7, 10, 0.98));
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.25);
+        }
+
+        .glow-emerald {
+            box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.5);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0C0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #202A3C;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar selection:bg-purple-600 selection:text-white">
+
+    <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-cyan-900 text-white text-xs sm:text-sm font-bold py-2 px-4 text-center border-b border-purple-500/40 flex justify-center items-center gap-2 relative z-50">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="tracking-wide text-gray-100">🔥 ACESSO IMEDIATO APÓS PAGAMENTO | SUPORTE MOÇAMBIQUE 2026</span>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-loud-dark/95 backdrop-blur-md border-b border-loud-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-purple-500/30">
+                    L
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-wider font-heading text-white flex items-center cursor-default">
+                        <span class="hover-color-letter">L</span>
+                        <span class="hover-color-letter">O</span>
+                        <span class="hover-color-letter">U</span>
+                        <span class="hover-color-letter">D</span>
+                        <span class="ml-2 animated-gradient-text neon-glow-title">EBOOKS</span>
+                    </span>
+                    
+                    <!-- SECRET ADMIN TRIGGER: 5 Clicks required here -->
+                    <p id="secret-admin-trigger" onclick="handleSecretAdminClick()" class="text-[10px] text-cyan-400 hover:text-cyan-300 font-bold tracking-widest uppercase cursor-pointer select-none transition-colors" title="Clica 5 vezes para Painel Admin">
+                        Conhecimento Sem Limites 🇲🇿
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Actions -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <a href="#ebooks" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-loud-card hover:bg-gray-800 text-xs font-bold text-gray-200 border border-gray-700 transition">
+                    <i class="fa-solid fa-book-open text-purple-400"></i> Ver Catálogo
+                </a>
+                <button onclick="openMpesaModal()" class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-bold flex items-center gap-2 transition shadow-lg glow-emerald shine-btn">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Pagar via M-Pesa / e-Mola
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow relative">
+        <section class="relative py-10 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto relative z-10 cyberpunk-hero-box p-6 sm:p-12 rounded-3xl">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-black mb-6">
+                    <i class="fa-solid fa-bolt text-yellow-400 animate-pulse"></i> A Maior Loja Digital de Ebooks em Moçambique
+                </span>
+                
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight text-white leading-tight mb-6">
+                    Domina Conhecimentos Práticos com os Nossos <span class="animated-gradient-text neon-glow-title">Ebooks Exclusivos</span>
+                </h1>
+                
+                <p class="text-gray-300 text-sm sm:text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Aprende estratégias reais de vendas, tráfego pago e alta performance. Recebe o teu livro digital instantaneamente no teu e-mail após o pagamento.
+                </p>
+
+                <!-- Value Proposition Highlights -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 border-t border-loud-border">
+                    <div class="p-3 rounded-2xl bg-loud-card/90 border border-loud-border flex items-center gap-3">
+                        <i class="fa-solid fa-bolt text-xl text-yellow-400"></i>
+                        <div class="text-left">
+                            <h4 class="text-xs font-bold text-white">Entrega Imediata</h4>
+                            <p class="text-[10px] text-gray-400">Via E-mail / PDF</p>
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-loud-card/90 border border-loud-border flex items-center gap-3">
+                        <i class="fa-solid fa-shield-halved text-xl text-emerald-400"></i>
+                        <div class="text-left">
+                            <h4 class="text-xs font-bold text-white">Compra Segura</h4>
+                            <p class="text-[10px] text-gray-400">EscalePay Verificado</p>
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-loud-card/90 border border-loud-border flex items-center gap-3">
+                        <i class="fa-solid fa-mobile-retro text-xl text-cyan-400"></i>
+                        <div class="text-left">
+                            <h4 class="text-xs font-bold text-white">M-Pesa / e-Mola</h4>
+                            <p class="text-[10px] text-gray-400">Pagamento Local</p>
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-loud-card/90 border border-loud-border flex items-center gap-3">
+                        <i class="fa-solid fa-headset text-xl text-purple-400"></i>
+                        <div class="text-left">
+                            <h4 class="text-xs font-bold text-white">Suporte Ativo</h4>
+                            <p class="text-[10px] text-gray-400">Atendimento 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ebooks" class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-loud-border pb-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-black font-heading text-white flex items-center gap-3">
+                        <i class="fa-solid fa-fire text-purple-500"></i> Catálogo de Ebooks LOUD
+                    </h2>
+                    <p class="text-gray-400 text-xs sm:text-sm mt-1">Escolha o teu livro digital e inicia a leitura imediatamente</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-gray-300 bg-loud-card px-4 py-2 rounded-xl border border-purple-500/30">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i> Preços em Meticais Moçambicanos (MT)
+                </div>
+            </div>
+
+            <!-- Ebooks Dynamic Grid Container -->
+            <div id="ebooks-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- JS dynamically renders books here -->
+            </div>
+        </section>
+
+        <section class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="rounded-3xl bg-gradient-to-r from-purple-950/90 via-loud-card to-cyan-950/90 p-6 sm:p-10 border border-purple-500/40 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <div class="lg:col-span-2">
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-black rounded-full uppercase tracking-wider">Pagamento Automatizado ou Carteira Movel</span>
+                        <h3 class="text-2xl sm:text-3xl font-black font-heading text-white mt-3 mb-3">
+                            Paga por M-Pesa, e-Mola ou Cartão!
+                        </h3>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6">
+                            Podes comprar diretamente com o botão do <strong>EscalePay</strong> para receção imediata, ou transferir para as nossas contas de suporte e enviar o comprovativo por e-mail.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <!-- M-Pesa -->
+                            <div class="bg-loud-dark/95 p-4 rounded-2xl border border-red-500/50 flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-red-600/30 text-red-400 flex items-center justify-center font-black text-lg">M</div>
+                                <div>
+                                    <span class="text-[10px] text-gray-400 uppercase font-bold">Conta M-Pesa</span>
+                                    <p class="text-base font-black text-white tracking-wider">851503736</p>
+                                </div>
+                                <button onclick="copyToClipboard('851503736')" class="ml-2 px-3 py-1.5 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 text-xs font-bold rounded-lg border border-emerald-500/40 transition">
+                                    <i class="fa-regular fa-copy"></i> Copiar
+                                </button>
+                            </div>
+
+                            <!-- e-Mola -->
+                            <div class="bg-loud-dark/95 p-4 rounded-2xl border border-orange-500/50 flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-orange-600/30 text-orange-400 flex items-center justify-center font-black text-lg">e</div>
+                                <div>
+                                    <span class="text-[10px] text-gray-400 uppercase font-bold">Conta e-Mola</span>
+                                    <p class="text-base font-black text-white tracking-wider">863843872</p>
+                                </div>
+                                <button onclick="copyToClipboard('863843872')" class="ml-2 px-3 py-1.5 bg-yellow-600/30 hover:bg-yellow-600/50 text-yellow-300 text-xs font-bold rounded-lg border border-yellow-500/40 transition">
+                                    <i class="fa-regular fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support Email Box -->
+                    <div class="bg-loud-dark/95 p-6 rounded-2xl border border-loud-border text-center">
+                        <i class="fa-solid fa-envelope-circle-check text-4xl text-purple-400 mb-3"></i>
+                        <h4 class="text-base font-bold text-white mb-2">Envio de Comprovativos</h4>
+                        <p class="text-xs text-gray-400 mb-4">Após a transferência manual, envia o comprovativo para o e-mail oficial:</p>
+                        <a href="mailto:Halonaalemina987@gmail.com" class="text-xs font-bold text-cyan-300 hover:underline break-all bg-purple-950/60 py-2.5 px-3 rounded-xl border border-purple-500/40 block">
+                            Halonaalemina987@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-bold text-purple-400 tracking-widest uppercase">Avaliações da Comunidade</span>
+                <h2 class="text-2xl sm:text-3xl font-black font-heading text-white mt-1">O que os Nossos Leitores Dizem</h2>
+                <div class="flex items-center justify-center gap-1 text-yellow-400 text-sm mt-2">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span class="text-xs font-bold text-gray-300 ml-2">4.9 / 5.0 (Compradores Reais em Moçambique)</span>
+                </div>
+            </div>
+
+            <!-- 10 Mozambican Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviews-container">
+                <!-- JS loads 10 Mozambican reviews -->
+            </div>
+        </section>
+    </main>
+
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-loud-card border border-purple-500/50 rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Admin Authentication View -->
+            <div id="admin-login-view">
+                <div class="text-center mb-6">
+                    <div class="w-14 h-14 bg-purple-600/30 text-purple-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 border border-purple-500/50 shadow-lg">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white font-heading">Painel Admin LOUD</h3>
+                    <p class="text-xs text-gray-400 mt-1">Área Restrita de Gestão de Ebooks</p>
+                </div>
+
+                <form onsubmit="handleAdminAuth(event)" class="space-y-4 max-w-sm mx-auto">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Palavra-Passe Secreta</label>
+                        <input type="password" id="admin-pass" required placeholder="Introduz a palavra-passe" class="w-full bg-loud-dark border border-gray-700 focus:border-purple-500 rounded-xl px-4 py-3 text-white text-sm outline-none transition">
+                    </div>
+                    <p id="admin-error" class="text-red-400 text-xs hidden text-center font-bold"><i class="fa-solid fa-circle-exclamation"></i> Palavra-passe incorreta!</p>
+                    <button type="submit" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-xl transition shadow-lg shine-btn">
+                        Entrar no Painel
+                    </button>
+                </form>
+            </div>
+
+            <!-- Dashboard Control View -->
+            <div id="admin-dashboard-view" class="hidden">
+                <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-purple-400"></i> Painel de Gestão de Ebooks
+                        </h3>
+                        <p class="text-xs text-emerald-400 font-semibold">Sessão Autenticada como Administrador</p>
+                    </div>
+                    <button onclick="logoutAdmin()" class="text-xs bg-red-600/20 text-red-300 border border-red-500/40 px-3 py-1.5 rounded-xl hover:bg-red-600/40 font-bold">
+                        Sair
+                    </button>
+                </div>
+
+                <!-- Add New Ebook Form -->
+                <div class="bg-loud-dark p-5 rounded-2xl border border-gray-700 mb-6">
+                    <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-plus-circle text-cyan-400"></i> Adicionar Novo Ebook à Loja
+                    </h4>
+                    <form onsubmit="handleAddEbook(event)" class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="text" id="new-title" required placeholder="Título do Ebook" class="bg-loud-card border border-gray-700 text-xs text-white p-3 rounded-xl outline-none focus:border-purple-500">
+                            <input type="number" id="new-price" required placeholder="Preço em MT (ex: 300)" class="bg-loud-card border border-gray-700 text-xs text-white p-3 rounded-xl outline-none focus:border-purple-500">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="url" id="new-link" required placeholder="Link de Compra EscalePay (https://checkout.escalepay.com/...)" class="bg-loud-card border border-gray-700 text-xs text-white p-3 rounded-xl outline-none focus:border-purple-500">
+                            <input type="number" id="new-sales" placeholder="Número de Vendas Inicial (ex: 50)" class="bg-loud-card border border-gray-700 text-xs text-white p-3 rounded-xl outline-none focus:border-purple-500">
+                        </div>
+
+                        <!-- Upload Options: Local PC File OR Image Web Link -->
+                        <div class="p-4 bg-loud-card border border-purple-500/30 rounded-2xl space-y-3">
+                            <label class="block text-xs font-bold text-purple-300 flex items-center gap-2">
+                                <i class="fa-solid fa-image"></i> Foto de Capa (Upload do teu PC ou Link):
+                            </label>
+                            
+                            <div class="flex items-center gap-2">
+                                <label for="new-cover-file" class="cursor-pointer bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl flex items-center gap-2 transition shrink-0">
+                                    <i class="fa-solid fa-desktop"></i> Escolher do PC / Telemóvel
+                                </label>
+                                <span id="file-name-display" class="text-[11px] text-gray-400 truncate">Nenhum ficheiro selecionado</span>
+                                <input type="file" id="new-cover-file" accept="image/*" onchange="handleFileSelect(event)" class="hidden">
+                            </div>
+
+                            <p class="text-[10px] text-gray-400 text-center font-bold">-- OU INSERE LINK DA WEB --</p>
+
+                            <input type="url" id="new-cover-url" placeholder="URL da Capa (https://...)" class="w-full bg-loud-dark border border-gray-700 text-xs text-white p-2.5 rounded-xl outline-none focus:border-purple-500">
+                            
+                            <!-- Image Preview Box -->
+                            <div id="image-preview-container" class="hidden p-2 bg-loud-dark rounded-xl flex items-center gap-3 border border-emerald-500/40">
+                                <img id="image-preview" class="w-12 h-14 object-cover rounded-lg">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-400">Capa Carregada com Sucesso</span>
+                                    <p class="text-[10px] text-gray-400">Pronta para publicar</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <textarea id="new-desc" rows="2" placeholder="Descrição curta do conteúdo do livro" class="w-full bg-loud-card border border-gray-700 text-xs text-white p-3 rounded-xl outline-none focus:border-purple-500"></textarea>
+                        
+                        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-xl transition shadow-lg glow-emerald shine-btn">
+                            Adicionar Ebook à Loja
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Existing Ebooks Management List -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Ebooks Publicados na Loja:</h4>
+                    <div id="admin-books-list" class="space-y-3 max-h-60 overflow-y-auto custom-scrollbar">
+                        <!-- JS Dynamic list -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mpesa-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-loud-card border border-emerald-500/50 rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeMpesaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-2 border border-emerald-500/40">
+                    <i class="fa-solid fa-mobile-retro"></i>
+                </div>
+                <h3 class="text-xl font-black text-white font-heading">Pagamento por Carteira Movel</h3>
+                <p class="text-xs text-gray-400">Transfere para as nossas contas oficiais em Moçambique</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="p-4 bg-loud-dark rounded-2xl border border-red-500/40 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-red-400 font-bold uppercase block">Vodacom M-Pesa</span>
+                        <span class="text-lg font-black text-white">851503736</span>
+                    </div>
+                    <button onclick="copyToClipboard('851503736')" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl transition">
+                        Copiar Número
+                    </button>
+                </div>
+
+                <div class="p-4 bg-loud-dark rounded-2xl border border-orange-500/40 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-orange-400 font-bold uppercase block">Movitel e-Mola</span>
+                        <span class="text-lg font-black text-white">863843872</span>
+                    </div>
+                    <button onclick="copyToClipboard('863843872')" class="px-3 py-2 bg-yellow-600 hover:bg-yellow-500 text-white text-xs font-bold rounded-xl transition">
+                        Copiar Número
+                    </button>
+                </div>
+
+                <div class="p-4 bg-purple-950/50 rounded-2xl border border-purple-500/30 text-xs text-gray-300 space-y-1">
+                    <p class="font-bold text-purple-300"><i class="fa-solid fa-circle-info"></i> Passos para Receber o Ebook:</p>
+                    <ol class="list-decimal list-inside text-[11px] text-gray-400 space-y-0.5">
+                        <li>Efetua a transferência para o número M-Pesa ou e-Mola.</li>
+                        <li>Captura o ecrã do comprovativo de pagamento.</li>
+                        <li>Envia para <strong class="text-white">Halonaalemina987@gmail.com</strong>.</li>
+                        <li>O link do livro será libertado de imediato!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <button onclick="closeMpesaModal()" class="w-full mt-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold text-xs rounded-xl transition">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-emerald-600 text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl hidden flex items-center gap-2 transform transition-all border border-emerald-400">
+        <i class="fa-solid fa-circle-check text-base"></i>
+        <span id="toast-message">Copiado com sucesso!</span>
+    </div>
+
+    <footer class="bg-loud-dark border-t border-loud-border pt-12 pb-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-loud-border">
+                <!-- Brand Info -->
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-9 h-9 rounded-xl bg-purple-600 flex items-center justify-center text-white text-lg font-black">
+                            L
+                        </div>
+                        <span class="text-lg font-black tracking-wider font-heading text-white">EBOOKS LOUD</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                        A tua plataforma moçambicana de referência para e-books de negócios, vendas e desenvolvimento pessoal.
+                    </p>
+                    <span class="text-[11px] bg-purple-950/80 border border-purple-500/40 text-purple-300 px-3 py-1 rounded-full font-bold">
+                        🇲🇿 Autorizado & Operando em Moçambique • 2026
+                    </span>
+                </div>
+
+                <!-- Support & Contacts -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Apoio ao Cliente</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-purple-400"></i>
+                            <span>Halonaalemina987@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-emerald-400"></i>
+                            <span>+258 851503736 (M-Pesa)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-yellow-400"></i>
+                            <span>+258 863843872 (e-Mola)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal Badges -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Garantia & Segurança</h4>
+                    <div class="space-y-2 text-xs text-gray-400">
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-lock text-emerald-400"></i> Encriptação Segura SSL
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-cyan-400"></i> Checkout Verificado EscalePay
+                        </p>
+                        <p class="text-[11px] text-gray-500 mt-2">
+                            © 2026 Ebooks Loud. Todos os direitos reservados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>Site oficial Ebooks Loud | Criado em 2026 em Moçambique.</p>
+                <div class="flex items-center gap-4">
+                    <button onclick="handleSecretAdminClick()" class="hover:text-purple-400 transition text-[11px]">
+                        <i class="fa-solid fa-lock"></i> Painel Gestor
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Default Ebooks List with Exact Prices, Titles & EscalePay Links provided by user
+        const defaultEbooks = [
+            {
+                id: 1,
+                title: "Como Fazer Dinheiro com Meta Ads",
+                price: 300,
+                sales: 198,
+                link: "https://checkout.escalepay.com/8522560",
+                cover: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&auto=format&fit=crop&q=80",
+                description: "Aprende a criar anúncios de alta conversão no Facebook e Instagram para escalar as tuas vendas em Moçambique.",
+                badge: "Mais Vendido 🔥"
+            },
+            {
+                id: 2,
+                title: "Do Zero às Primeiras Vendas",
+                price: 149,
+                sales: 142,
+                link: "https://checkout.escalepay.com/5007609",
+                cover: "https://images.unsplash.com/photo-1556742049-0a67daf4004a?w=600&auto=format&fit=crop&q=80",
+                description: "O passo a passo simples e prático para realizares vendas diárias na internet mesmo sem experiência.",
+                badge: "Iniciante 🚀"
+            },
+            {
+                id: 3,
+                title: "Físico dos Sonhos Loud",
+                price: 179,
+                sales: 210,
+                link: "https://checkout.escalepay.com/8809147",
+                cover: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80",
+                description: "Guia prático de treinos e hábitos de alto rendimento para atingir a melhor versão do teu corpo.",
+                badge: "Saúde & Fitness 💪"
+            },
+            {
+                id: 4,
+                title: "Mindset Inabalável & Vendas LOUD",
+                price: 250,
+                sales: 89,
+                link: "https://checkout.escalepay.com/8522560",
+                cover: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&auto=format&fit=crop&q=80",
+                description: "Técnicas de disciplina, postura de negócios e negociação direta para fechar vendas no WhatsApp.",
+                badge: "Recomendado ✨"
+            }
+        ];
+
+        const realReviews = [
+            {
+                name: "Mateus Nhantumbo",
+                city: "Maputo",
+                rating: 5,
+                comment: "O ebook de Meta Ads é direto ao ponto! Consegui criar a minha primeira campanha no Facebook em 20 minutos.",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+                ebook: "Meta Ads 300MT"
+            },
+            {
+                name: "Cidália Macamo",
+                city: "Matola",
+                rating: 5,
+                comment: "Paguei via M-Pesa e recebi o PDF imediatamente no meu e-mail. Atendimento super rápido!",
+                avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&auto=format&fit=crop&q=80",
+                ebook: "Do Zero às Primeiras Vendas"
+            },
+            {
+                name: "Edson Cossa",
+                city: "Beira",
+                rating: 5,
+                comment: "Conteúdo adaptado à realidade de Moçambique. Recomendo muito o 'Do Zero às Primeiras Vendas'.",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+                ebook: "Do Zero às Primeiras Vendas"
+            },
+            {
+                name: "Yolanda Tembe",
+                city: "Nampula",
+                rating: 4.5,
+                comment: "Gostei imenso do Físico dos Sonhos! Exercícios práticos e fáceis de aplicar no dia a dia.",
+                avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150&auto=format&fit=crop&q=80",
+                ebook: "Físico dos Sonhos Loud"
+            },
+            {
+                name: "Sérgio Mabunda",
+                city: "Chimoio",
+                rating: 5,
+                comment: "Comprei usando o e-Mola sem complicações. A equipa Ebooks Loud é muito honesta e atenciosa.",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+                ebook: "Suporte Ebooks Loud"
+            },
+            {
+                name: "Amina Langa",
+                city: "Pemba",
+                rating: 4.5,
+                comment: "Excelente material. A leitura é fluida e o layout do e-book é super profissional.",
+                avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+                ebook: "Meta Ads 300MT"
+            },
+            {
+                name: "Benedito Sitói",
+                city: "Inhambane",
+                rating: 5,
+                comment: "Checkout do EscalePay 100% seguro. Nota 10 para a plataforma!",
+                avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+                ebook: "Mindset Inabalável"
+            },
+            {
+                name: "Tânia Guambe",
+                city: "Gaza",
+                rating: 5,
+                comment: "Tinha dúvidas se ia funcionar em Moçambique, mas as estratégias de vendas são excelentes.",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+                ebook: "Do Zero às Primeiras Vendas"
+            },
+            {
+                name: "Kevin Chissano",
+                city: "Quelimane",
+                rating: 4.5,
+                comment: "Ótimo investimento para quem quer começar a vender produtos digitais.",
+                avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=150&auto=format&fit=crop&q=80",
+                ebook: "Meta Ads 300MT"
+            },
+            {
+                name: "Filomena Chauque",
+                city: "Tete",
+                rating: 5,
+                comment: "Tudo perfeito! Ficheiro PDF leve e legível no telemóvel.",
+                avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=150&auto=format&fit=crop&q=80",
+                ebook: "Físico dos Sonhos Loud"
+            }
+        ];
+
+        let ebooks = JSON.parse(localStorage.getItem('loud_ebooks_2026')) || defaultEbooks;
+        let uploadedImageBase64 = null;
+
+        // SECRET ADMIN TRIGGER: 5 Clicks counter logic
+        let secretClickCount = 0;
+        let secretClickTimer = null;
+
+        function handleSecretAdminClick() {
+            secretClickCount++;
+            clearTimeout(secretClickTimer);
+
+            if (secretClickCount >= 5) {
+                secretClickCount = 0;
+                toggleAdminModal();
+                showToast("🔒 Painel Secreto de Administrador Ativado!");
+            } else {
+                secretClickTimer = setTimeout(() => {
+                    secretClickCount = 0;
+                }, 2000);
+            }
+        }
+
+        function renderEbooks() {
+            const grid = document.getElementById('ebooks-grid');
+            grid.innerHTML = '';
+
+            ebooks.forEach(book => {
+                const card = document.createElement('div');
+                card.className = "loud-card rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-56 overflow-hidden bg-loud-dark">
+                            <img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'">
+                            
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-purple-600/90 text-white text-[10px] font-black rounded-full shadow-lg">
+                                ${book.badge || 'Digital'}
+                            </span>
+
+                            <div class="absolute bottom-3 right-3 bg-loud-black/90 px-3 py-1 rounded-xl border border-purple-500/40">
+                                <span class="text-[10px] text-gray-400">Preço:</span>
+                                <span class="text-sm font-black text-emerald-400 ml-1">${book.price} MT</span>
+                            </div>
+                        </div>
+
+                        <div class="p-5">
+                            <div class="flex items-center gap-1.5 mb-2">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-bold text-emerald-400">
+                                    <i class="fa-solid fa-fire text-amber-400"></i> +${book.sales || 50} Vendas Efetuadas
+                                </span>
+                            </div>
+
+                            <h3 class="text-base font-bold text-white mb-2 line-clamp-2">
+                                ${book.title}
+                            </h3>
+                            <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">
+                                ${book.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 pt-0 space-y-2">
+                        <a href="${book.link}" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-lg shine-btn">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar via EscalePay
+                        </a>
+                        <button onclick="openMpesaModal()" class="w-full py-2.5 px-4 bg-loud-dark hover:bg-gray-800 text-emerald-400 border border-emerald-500/30 font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition">
+                            <i class="fa-solid fa-mobile-screen"></i> Pagar via M-Pesa / e-Mola
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = '';
+
+            realReviews.forEach(rev => {
+                let starsHtml = '';
+                const fullStars = Math.floor(rev.rating);
+                const hasHalf = rev.rating % 1 !== 0;
+
+                for(let i=0; i<fullStars; i++) {
+                    starsHtml += '<i class="fa-solid fa-star text-yellow-400"></i>';
+                }
+                if(hasHalf) {
+                    starsHtml += '<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>';
+                }
+
+                const card = document.createElement('div');
+                card.className = "loud-card p-5 rounded-2xl flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="${rev.avatar}" alt="${rev.name}" class="w-10 h-10 rounded-full object-cover border-2 border-purple-500/40">
+                                <div>
+                                    <h4 class="text-xs font-bold text-white flex items-center gap-1">
+                                        ${rev.name}
+                                        <i class="fa-solid fa-circle-check text-emerald-400 text-[10px]" title="Comprador Verificado"></i>
+                                    </h4>
+                                    <span class="text-[10px] text-gray-400">${rev.city}, Moçambique</span>
+                                </div>
+                            </div>
+                            <div class="text-xs space-x-0.5">
+                                ${starsHtml}
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-300 italic leading-relaxed mb-3">"${rev.comment}"</p>
+                    </div>
+                    <div class="pt-3 border-t border-loud-border/60 flex items-center justify-between text-[10px] text-gray-400">
+                        <span>Ebook: <strong class="text-purple-300">${rev.ebook}</strong></span>
+                        <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-check"></i> Verificado</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const nameDisplay = document.getElementById('file-name-display');
+            const previewContainer = document.getElementById('image-preview-container');
+            const previewImg = document.getElementById('image-preview');
+
+            if (file) {
+                nameDisplay.innerText = file.name;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImageBase64 = e.target.result;
+                    previewImg.src = uploadedImageBase64;
+                    previewContainer.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                nameDisplay.innerText = "Nenhum ficheiro selecionado";
+                previewContainer.classList.add('hidden');
+                uploadedImageBase64 = null;
+            }
+        }
+
+        function handleAdminAuth(e) {
+            e.preventDefault();
+            const passInput = document.getElementById('admin-pass').value;
+            const errorMsg = document.getElementById('admin-error');
+
+            if (passInput === "LOUDZIN986") {
+                errorMsg.classList.add('hidden');
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminBooksList();
+                showToast("Acesso concedido ao Painel Admin LOUD!");
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('admin-login-view').classList.remove('hidden');
+            document.getElementById('admin-dashboard-view').classList.add('hidden');
+            toggleAdminModal();
+        }
+
+        function handleAddEbook(e) {
+            e.preventDefault();
+            const title = document.getElementById('new-title').value;
+            const price = parseFloat(document.getElementById('new-price').value);
+            const link = document.getElementById('new-link').value;
+            const customSales = parseInt(document.getElementById('new-sales').value) || 35;
+            const coverUrl = document.getElementById('new-cover-url').value;
+            const description = document.getElementById('new-desc').value || 'Ebook exclusivo da loja LOUD EBOOKS.';
+
+            const finalCover = uploadedImageBase64 || coverUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80';
+
+            const newBook = {
+                id: Date.now(),
+                title,
+                price,
+                sales: customSales,
+                link,
+                cover: finalCover,
+                description,
+                badge: "Novo Ebook ✨"
+            };
+
+            ebooks.push(newBook);
+            saveEbooks();
+            renderEbooks();
+            renderAdminBooksList();
+
+            e.target.reset();
+            uploadedImageBase64 = null;
+            document.getElementById('file-name-display').innerText = "Nenhum ficheiro selecionado";
+            document.getElementById('image-preview-container').classList.add('hidden');
+            
+            showToast("Novo Ebook publicado na loja!");
+        }
+
+        function removeEbook(id) {
+            ebooks = ebooks.filter(b => b.id !== id);
+            saveEbooks();
+            renderEbooks();
+            renderAdminBooksList();
+            showToast("Ebook removido com sucesso!");
+        }
+
+        function saveEbooks() {
+            localStorage.setItem('loud_ebooks_2026', JSON.stringify(ebooks));
+        }
+
+        function renderAdminBooksList() {
+            const container = document.getElementById('admin-books-list');
+            container.innerHTML = '';
+
+            ebooks.forEach(book => {
+                const item = document.createElement('div');
+                item.className = "bg-loud-card p-3 rounded-xl border border-gray-700 flex items-center justify-between text-xs";
+                item.innerHTML = `
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <img src="${book.cover}" class="w-8 h-8 rounded-lg object-cover">
+                        <div class="truncate">
+                            <h5 class="font-bold text-white truncate">${book.title}</h5>
+                            <span class="text-emerald-400 font-semibold">${book.price} MT</span>
+                        </div>
+                    </div>
+                    <button onclick="removeEbook(${book.id})" class="text-red-400 hover:text-red-300 p-2 font-bold">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // Modals Controls
+        function toggleAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function openMpesaModal() {
+            document.getElementById('mpesa-modal').classList.remove('hidden');
+        }
+
+        function closeMpesaModal() {
+            document.getElementById('mpesa-modal').classList.add('hidden');
+        }
+
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast(`Número ${text} copiado!`);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgSpan = document.getElementById('toast-message');
+            msgSpan.innerText = message;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEbooks();
+            renderReviews();
+        });
+    </script>
+</body>
+</html>
